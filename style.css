@@ -1,1 +1,311 @@
-/* Add your CSS here */
+/* =
+   Base Styles & CSS Variables (Intel Brand Palette)
+   = */
+:root {
+  --intel-blue: #0068b5;
+  --intel-dark-blue: #003c71;
+  --intel-light-blue: #00c7fd;
+  --text-dark: #121212;
+  --text-light: #666666;
+  --bg-light: #f4f7f9;
+  --card-bg: #ffffff;
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* =
+   Header / Hero Section
+   = */
+header {
+  background: linear-gradient(135deg, var(--intel-dark-blue) 0%, var(--intel-blue) 100%);
+  color: #ffffff;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+header div {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+header img {
+  width: 140px;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.5px;
+}
+
+header p {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* =
+   Timeline Container Layout (Desktop: Horizontal Scroll | Mobile: Stacked)
+   = */
+.timeline-wrapper {
+  position: relative;
+}
+
+.timeline-section {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding: 3rem 4rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.timeline-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--intel-blue);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+  transform: translateY(-50%);
+  transition: background-color var(--transition-speed) ease,
+              transform var(--transition-speed) ease;
+}
+
+.timeline-nav:hover,
+.timeline-nav:focus-visible {
+  background: var(--intel-dark-blue);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.timeline-nav-left {
+  left: 1rem;
+}
+
+.timeline-nav-right {
+  right: 1rem;
+}
+
+/* Custom Scrollbar Styling */
+.timeline-section::-webkit-scrollbar {
+  height: 8px;
+}
+
+.timeline-section::-webkit-scrollbar-track {
+  background: #e0e6ed;
+  border-radius: 4px;
+}
+
+.timeline-section::-webkit-scrollbar-thumb {
+  background: var(--intel-blue);
+  border-radius: 4px;
+}
+
+/* =
+   Milestone Cards & Interactive Hover State
+   = */
+.timeline-card {
+  flex: 0 0 320px; /* Fixed width for horizontal scrolling */
+  scroll-snap-align: center;
+  background: var(--card-bg);
+  border-radius: 12px;
+  border-top: 4px solid var(--intel-blue);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-card h2 {
+  font-size: 2rem;
+  color: var(--intel-blue);
+  font-weight: 800;
+}
+
+.timeline-card h3 {
+  font-size: 1.25rem;
+  color: var(--intel-dark-blue);
+  margin-bottom: 1rem;
+}
+
+.timeline-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.timeline-card p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+/* Card Hover Effects */
+.timeline-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 104, 181, 0.18);
+  border-top-color: var(--intel-light-blue);
+}
+
+/* = 
+   Instruction Footer & Responsive Media Queries
+   = */
+.scroll-hint {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 3rem;
+  font-weight: 500;
+}
+
+/* Mobile & Tablet Adjustments (< 768px) */
+@media (max-width: 768px) {
+  header {
+    padding: 3rem 1.5rem;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .timeline-section {
+    flex-direction: column; /* Stack vertically on smaller screens */
+    overflow-x: visible;
+    padding: 2rem 1.5rem;
+  }
+
+  .timeline-nav {
+    display: none;
+  }
+
+  .timeline-card {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .scroll-hint {
+    display: none; /* Hide scroll instruction when stacked */
+  }
+}
+
+/* ==========================================================================
+   Milestone Cards & Hover Reveal Effect
+   ========================================================================== */
+.timeline-card {
+  flex: 0 0 320px;
+  scroll-snap-align: center;
+  background: var(--card-bg);
+  border-radius: 12px;
+  border-top: 4px solid var(--intel-blue);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-speed) ease, 
+              box-shadow var(--transition-speed) ease,
+              border-top-color var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Base style for paragraph: Hidden by default */
+.timeline-card p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  
+  /* Reveal transition setup */
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), 
+              opacity 0.3s ease, 
+              margin-top 0.3s ease;
+}
+
+/* Card Hover State: Lifts card & Reveals Paragraph */
+.timeline-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 104, 181, 0.18);
+  border-top-color: var(--intel-light-blue);
+}
+
+.timeline-card:hover p {
+  max-height: 200px; /* Allows container to expand smoothly */
+  opacity: 1;
+  margin-top: 0.75rem; /* Creates spacing above text when revealed */
+  transition: max-height 0.4s cubic-bezier(0.9, 0, 0.8, 0.2), 
+              opacity 0.4s ease 0.1s, 
+              margin-top 0.3s ease;
+}
+
+/* ==========================================================================
+   Indicator / Badge Styling
+   ========================================================================== */
+
+/* 1. Flex container for the title and the '+' icon */
+.card-header-wrapper {
+  display: flex;
+  justify-content: space-between; /* Pushes the title left and icon right */
+  align-items: center; /* Vertically centers the icon with the text */
+  margin-bottom: 1rem;
+}
+
+/* 2. Style the H3 inside the wrapper (removes its default margin-bottom) */
+.timeline-card .card-header-wrapper h3 {
+  margin-bottom: 0;
+  flex-grow: 1; /* Title takes available space */
+}
+
+/* 3. The small circle indicator/badge */
+.hover-indicator {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  background-color: #f0f3f6; /* Subtle, light gray background */
+  color: var(--intel-blue); /* The main blue for the '+' */
+  border-radius: 50%; /* Perfect circle */
+  font-size: 1.25rem;
+  font-weight: 700;
+  transition: all var(--transition-speed) ease; /* Smooth hover transition */
+  margin-left: 1rem;
+  flex-shrink: 0; /* Prevents the circle from squashing */
+}
+
+/* 4. [ANIMATION] Trigger state on card hover */
+.timeline-card:hover .hover-indicator {
+  background-color: var(--intel-blue); /* Fills circle with Intel Blue */
+  color: #ffffff; /* Turns '+' white */
+  transform: rotate(90deg) scale(1.1); /* Rotates and slightly pops the icon */
+}
