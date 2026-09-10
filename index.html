@@ -28,9 +28,7 @@
   </header>
 
   <!-- Timeline Cards Section -->
-  <div class="timeline-wrapper">
-    <button class="timeline-nav timeline-nav-left" type="button" aria-label="Show previous timeline" title="Previous timeline">&larr;</button>
-    <section class="timeline-section">
+  <section class="timeline-section">
 
     <!-- Card 1: 1968 -->
     <div class="timeline-card">
@@ -166,41 +164,7 @@
         next-generation sustainable semiconductor manufacturing.
       </p>
     </div>
-    </section>
-    <button class="timeline-nav timeline-nav-right" type="button" aria-label="Show next timeline" title="Next timeline">&rarr;</button>
-  </div>
-  <p class="scroll-hint">Hover over the sides to view the next timeline | Hover over cards to learn more!</p>
-
-  <script>
-    const timeline = document.querySelector(".timeline-section");
-    const navigationButtons = document.querySelectorAll(".timeline-nav");
-    let scrollTimer;
-
-    function moveTimeline(direction) {
-      timeline.scrollBy({
-        left: direction * 336,
-        behavior: "smooth"
-      });
-    }
-
-    function startScrolling(direction) {
-      moveTimeline(direction);
-      scrollTimer = setInterval(() => moveTimeline(direction), 900);
-    }
-
-    function stopScrolling() {
-      clearInterval(scrollTimer);
-    }
-
-    navigationButtons.forEach((button) => {
-      const direction = button.classList.contains("timeline-nav-left") ? -1 : 1;
-
-      button.addEventListener("mouseenter", () => startScrolling(direction));
-      button.addEventListener("mouseleave", stopScrolling);
-      button.addEventListener("focus", () => startScrolling(direction));
-      button.addEventListener("blur", stopScrolling);
-      button.addEventListener("click", () => moveTimeline(direction));
-    });
-  </script>
+  </section>
+  <p class="scroll-hint">Scroll to view timeline | Hover over cards to learn more!</p>
 </body>
 </html>
